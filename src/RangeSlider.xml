@@ -44,6 +44,15 @@
                 <attributeType name="Decimal"/>
             </attributeTypes>
         </property>
+        <property key="editable" type="enumeration" defaultValue="default">
+            <caption>Editable</caption>
+            <category>Data source</category>
+            <description/>
+            <enumerationValues>
+                <enumerationValue key="default">Default</enumerationValue>
+                <enumerationValue key="never">Never</enumerationValue>
+            </enumerationValues>
+        </property>
         <property key="onChangeMicroflow" type="microflow" required="false">
             <caption>On change microflow</caption>
             <category>Events</category>

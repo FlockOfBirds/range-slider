@@ -24,6 +24,7 @@ export interface RangeSliderContainerProps extends WrapperProps {
     readOnly: boolean;
     lowerBoundAttribute: string;
     upperBoundAttribute: string;
+    editable: "default" | "never";
 }
 
 interface Nanoflow {
@@ -55,10 +56,12 @@ export default class RangeSliderContainer extends Component<RangeSliderContainer
     }
 
     render() {
-        const disabled = !this.props.mxObject || this.props.readOnly
-            || !!(this.props.lowerBoundAttribute && this.props.mxObject.isReadonlyAttr(this.props.lowerBoundAttribute))
-            || !!(this.props.upperBoundAttribute && this.props.mxObject.isReadonlyAttr(this.props.upperBoundAttribute));
-
+        const { mxObject, readOnly, lowerBoundAttribute, upperBoundAttribute } = this.props;
+        const disabled = this.props.editable === "default"
+            ? (!mxObject || readOnly
+                || !!(lowerBoundAttribute && mxObject.isReadonlyAttr(lowerBoundAttribute))
+                || !!(upperBoundAttribute && mxObject.isReadonlyAttr(upperBoundAttribute)))
+            : true;
         const alertMessage = !disabled
             ? this.validateSettings(this.state) || this.validateValues()
             : "";
