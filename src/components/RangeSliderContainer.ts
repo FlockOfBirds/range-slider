@@ -130,8 +130,8 @@ export default class RangeSliderContainer extends Component<RangeSliderContainer
             message.push("Upper bound value is required");
         }
         if (typeof maximumValue === "number" && typeof minimumValue === "number") {
-            if (validMin && validMax && (minimumValue >= maximumValue)) {
-                message.push(`Minimum value ${minimumValue} should be less than the maximum value ${maximumValue}`);
+            if (validMin && validMax && (minimumValue > maximumValue)) {
+                message.push(`Minimum value ${minimumValue} should be less than or equal to the maximum value ${maximumValue}`); // tslint:disable:max-line-length
             }
             if (!stepValue || stepValue <= 0) {
                 message.push(`Step value ${stepValue} should be greater than 0`);
