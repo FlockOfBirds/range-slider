@@ -180,9 +180,10 @@ export default class RangeSliderContainer extends Component<RangeSliderContainer
         const { onChangeMicroflow, onChangeNanoflow, mxform } = this.props;
         if (onChangeMicroflow) {
             window.mx.ui.action(onChangeMicroflow, {
-                error: (error) => window.mx.ui.error(
+                error: error => window.mx.ui.error(
                     `An error occurred while executing microflow: ${onChangeMicroflow}: ${error.message}`
                 ),
+                origin: mxform,
                 params: {
                     applyto: "selection",
                     guids: [ mxObject.getGuid() ]
